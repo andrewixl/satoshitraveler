@@ -4,10 +4,9 @@ def test(request):
 	print 'in app'
 
 urlpatterns = [
+    url(r'^login$', views.index),
     url(r'^register$', views.register),
-    url(r'^login$', views.login),
+    url(r'^login_verify$', views.login_verify),
     url(r'^logout$', views.logout),
-	url(r'^createclub$', views.createclub),
-	url(r'^addclub$', views.addclub),
-	url(r'^$', views.index),
+
 ]

@@ -20,8 +20,7 @@ def register(request):
 	else:
 		genErrors(request, results['errors'])
 	return redirect('/')
-
-def login_verify(request):
+def login(request):
 	results =User.objects.loginVal(request.POST)
 	if results['status'] == False:
 		genErrors(request, results['errors'])
@@ -31,8 +30,8 @@ def login_verify(request):
 	request.session['l_name'] = results['user'][0].l_name
 	request.session['email'] = results['user'][0].email
 	request.session['user_id'] = results['user'][0].id
-	return redirect('/')
+	return redirect('/cats')
 
 def logout(request):
 	request.session.flush()
-	return redirect('/login')
+	return redirect('/')
