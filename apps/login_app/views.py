@@ -19,16 +19,16 @@ def register(request):
 		messages.success(request, 'User was created. Please log in.')
 	else:
 		genErrors(request, results['errors'])
-	return redirect('/')
+	return redirect('/login')
 
 def login_verify(request):
 	results =User.objects.loginVal(request.POST)
 	if results['status'] == False:
 		genErrors(request, results['errors'])
-		return redirect('/')
+		return redirect('/login')
 
-	request.session['f_name'] = results['user'][0].f_name
-	request.session['l_name'] = results['user'][0].l_name
+	request.session['first_name'] = results['user'][0].first_name
+	request.session['last_name'] = results['user'][0].last_name
 	request.session['email'] = results['user'][0].email
 	request.session['user_id'] = results['user'][0].id
 	return redirect('/')

@@ -34,7 +34,7 @@ class UserManager(models.Manager):
 		return results
 	def createUser(self, postData):
 		p_hash = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())
-		user = User.objects.create(first_name = postData['first_name'], last_name = postData['last_name'], email = postData['email'], password = p_hash, satoshi=0,)
+		user = User.objects.create(first_name = postData['first_name'], last_name = postData['last_name'], email = postData['email'], password = p_hash,)
 		return user
 	def loginVal(self, postData):
 		results = {'status': True, 'errors': [], 'user': None}
@@ -57,9 +57,22 @@ class User(models.Model):
 	last_name = models.CharField(max_length = 400)
 	email = models.CharField(max_length = 400)
 	password = models.CharField(max_length = 400)
-	satoshi = models.FloatField()
 
-	
+	satoshi = models.FloatField(default=0)
+	section_1_level = models.IntegerField(default=1)
+	section_2_level = models.IntegerField(default=0)
+	section_3_level = models.IntegerField(default=0)
+	section_4_level = models.IntegerField(default=0)
+	section_5_level = models.IntegerField(default=0)
+	section_6_level = models.IntegerField(default=0)
+	section_7_level = models.IntegerField(default=0)
+	section_8_level = models.IntegerField(default=0)
+	section_9_level = models.IntegerField(default=0)
+	section_10_level = models.IntegerField(default=0)
+	section_11_level = models.IntegerField(default=0)
+	section_12_level = models.IntegerField(default=0)
+
+
 	objects = UserManager()
 
 	def __str__(self):
